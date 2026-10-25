@@ -364,21 +364,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const total = state.rawLines.length;
     const curIdx = state.currentIndex;
 
-    // 前の行（直近の記録があれば表示）
+    // 上段: いま流れている歌詞（直近の記録があれば表示、なければ案内）
+    lyricPast.style.visibility = 'visible';
     if (state.records.length > 0) {
       const lastRec = state.records[state.records.length - 1];
-      lyricPast.style.visibility = 'visible';
       pastText.textContent = lastRec.text;
     } else {
-      lyricPast.style.visibility = 'hidden';
-      pastText.textContent = ' ';
+      pastText.textContent = '（歌い出しをお待ちください）';
     }
 
-    // 現在の行
+    // 中段: 歌い出しでタップするターゲット歌詞
     if (curIdx < total) {
       currentText.textContent = state.rawLines[curIdx];
       lineCounter.textContent = `行 ${curIdx + 1} / ${total}`;
-      lyricCurrent.style.display = 'block';
+      lyricCurrent.style.display = 'flex';
       btnTap.disabled = false;
     } else {
       // 全行記録完了
@@ -392,13 +391,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 次の行
+    // 下段: その次の歌詞
+    lyricFuture.style.visibility = 'visible';
     if (curIdx + 1 < total) {
-      lyricFuture.style.visibility = 'visible';
       futureText.textContent = state.rawLines[curIdx + 1];
     } else {
-      lyricFuture.style.visibility = 'hidden';
-      futureText.textContent = ' ';
+      futureText.textContent = '（この行で最後です）';
     }
   }
 

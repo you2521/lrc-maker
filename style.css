@@ -551,7 +551,7 @@ input, textarea, button {
   margin-top: 2px;
 }
 
-/* 歌詞テレプロンプター (前・今・次を中央揃えで対称配置) */
+/* 歌詞テレプロンプター (再生中 → 歌い出し待ち → 次の予告) */
 .prompter-container {
   display: flex;
   flex-direction: column;
@@ -560,80 +560,125 @@ input, textarea, button {
   flex: 1;
 }
 
-.prompter-line {
-  padding: 10px 14px;
+.prompter-card {
   border-radius: var(--r-control);
   transition: all 0.15s ease;
   text-align: center;
-}
-
-.prompter-line.past,
-.prompter-line.future {
-  background-color: rgba(255, 255, 255, 0.02);
-  border: 1px dashed var(--border-subtle);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
 }
 
-.prompter-line.past .line-text,
-.prompter-line.future .line-text {
-  font-size: 13px;
+.prompter-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.icon-svg.mini {
+  width: 12px;
+  height: 12px;
+}
+
+/* 上段: いま流れている歌詞 */
+.prompter-card.past-playing {
+  background-color: rgba(108, 203, 95, 0.05);
+  border: 1px solid rgba(108, 203, 95, 0.22);
+  padding: 8px 14px;
+  min-height: 52px;
+}
+
+.badge-playing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--status-green);
+  background-color: var(--status-green-bg);
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+}
+
+.prompter-text.past-text {
+  font-size: 13.5px;
+  color: #e4e6ed;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 95%;
+  text-align: center;
+}
+
+/* 中段: この歌い出しでタップするターゲット歌詞 (最重要ハイライト) */
+.prompter-card.target-active {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--accent-primary);
+  box-shadow: 0 0 0 1px var(--accent-border);
+  padding: 14px 16px;
+  min-height: 84px;
+}
+
+.badge-target {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #000000;
+  background-color: var(--accent-primary);
+  padding: 2.5px 9px;
+  border-radius: var(--r-pill);
+}
+
+.badge-counter {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent-primary);
+  background-color: var(--accent-container);
+  padding: 2.5px 8px;
+  border-radius: var(--r-pill);
+}
+
+.prompter-text.target-text {
+  font-size: 19px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.35;
+  margin-top: 4px;
+  word-break: break-word;
+  text-align: center;
+}
+
+/* 下段: その次の歌詞 (予告) */
+.prompter-card.next-upcoming {
+  background-color: transparent;
+  border: 1px dashed var(--border-subtle);
+  padding: 6px 12px;
+  min-height: 44px;
+  opacity: 0.7;
+}
+
+.badge-upcoming {
+  font-size: 9.5px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background-color: var(--bg-input);
+  padding: 1.5px 6px;
+  border-radius: 4px;
+}
+
+.prompter-text.next-text {
+  font-size: 12px;
   color: var(--text-tertiary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 90%;
-  text-align: center;
-}
-
-.prompter-line.past {
-  opacity: 0.65;
-}
-
-.prompter-line.future {
-  opacity: 0.75;
-}
-
-.prompter-line.active {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-active);
-  box-shadow: 0 0 0 1px var(--accent-border);
-  padding: 18px 16px;
-  text-align: center;
-}
-
-.active-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--accent-primary);
-  background-color: var(--accent-container);
-  padding: 3px 10px;
-  border-radius: var(--r-pill);
-  margin-bottom: 8px;
-}
-
-.pulse-point {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--accent-primary);
-}
-
-.active-text {
-  font-size: 20px;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.35;
-  min-height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  word-break: break-word;
   text-align: center;
 }
 

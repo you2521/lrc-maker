@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <div id="app" class="window-shell">
@@ -154,22 +154,39 @@
           </div>
         </div>
 
-        <!-- 歌詞テレプロンプター (前・今・次を中央揃えで対称配置) -->
+        <!-- 歌詞テレプロンプター (再生中 → 歌い出し待ち → 次の予告) -->
         <div class="prompter-container">
-          <div class="prompter-line past" id="lyric-past">
-            <span class="line-text" id="past-text">前の歌詞</span>
-          </div>
-
-          <div class="prompter-line active" id="lyric-current">
-            <div class="active-badge">
-              <span class="pulse-point"></span>
-              <span id="line-counter">行 1 / 10</span>
+          <!-- 上段: いま流れている歌詞 -->
+          <div class="prompter-card past-playing" id="lyric-past">
+            <div class="prompter-badge-row">
+              <span class="badge-playing">
+                <svg class="icon-svg mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>再生中（いま流れている歌詞）</span>
+              </span>
             </div>
-            <div class="active-text" id="current-text">歌詞の準備中...</div>
+            <div class="prompter-text past-text" id="past-text">（歌い出しをお待ちください）</div>
           </div>
 
-          <div class="prompter-line future" id="lyric-future">
-            <span class="line-text" id="future-text">次の歌詞</span>
+          <!-- 中段: この歌い出しでタップするターゲット歌詞 -->
+          <div class="prompter-card target-active" id="lyric-current">
+            <div class="prompter-badge-row">
+              <span class="badge-target">
+                <svg class="icon-svg mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>歌い出しでタップ</span>
+              </span>
+              <span class="badge-counter" id="line-counter">行 1 / 10</span>
+            </div>
+            <div class="prompter-text target-text" id="current-text">歌詞の準備中...</div>
+          </div>
+
+          <!-- 下段: その次の歌詞 -->
+          <div class="prompter-card next-upcoming" id="lyric-future">
+            <div class="prompter-badge-row">
+              <span class="badge-upcoming">
+                <span>その次</span>
+              </span>
+            </div>
+            <div class="prompter-text next-text" id="future-text">次の歌詞</div>
           </div>
         </div>
 
@@ -294,11 +311,11 @@
     </div>
   </div>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=4').catch(() => {});
+        navigator.serviceWorker.register('./sw.js?v=5').catch(() => {});
       });
     }
   </script>

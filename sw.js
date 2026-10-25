@@ -1,5 +1,5 @@
 // キャッシュを強制クリアして最新版を取得させる
-const CACHE_NAME = 'lrc-maker-v4';
+const CACHE_NAME = 'lrc-maker-v6';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
