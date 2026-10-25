@@ -148,7 +148,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 空行削除 & クリア
+  // 貼り付け & 空行削除 & クリア
+  const btnPasteLyrics = document.getElementById('btn-paste-lyrics');
+  if (btnPasteLyrics) {
+    btnPasteLyrics.addEventListener('click', async () => {
+      try {
+        const text = await navigator.clipboard.readText();
+        if (text && text.trim().length > 0) {
+          lyricsInput.value = text;
+          showToast('クリップボードから貼り付けました');
+        } else {
+          showToast('クリップボードにテキストがありません');
+        }
+      } catch (err) {
+        showToast('貼り付けを許可してください、または手動で貼り付けてください');
+      }
+    });
+  }
+
   btnCleanEmpty.addEventListener('click', () => {
     const lines = lyricsInput.value.split('\n')
       .map(line => line.trim())

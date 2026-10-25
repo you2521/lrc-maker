@@ -395,6 +395,13 @@ input, textarea, button {
   color: var(--text-primary);
 }
 
+.btn-subtle.btn-accent-subtle {
+  color: var(--accent-primary);
+  border-color: var(--accent-border);
+  background-color: var(--accent-container);
+  font-weight: 600;
+}
+
 .card-footer-tip {
   display: flex;
   align-items: center;
