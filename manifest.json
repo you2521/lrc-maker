@@ -1,0 +1,22 @@
+{
+  "name": "LRC Maker for WatchLyrics",
+  "short_name": "LRC Maker",
+  "description": "音楽に合わせてタップするだけで歌詞LRCを作成できる無料ツール",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f1013",
+  "theme_color": "#0f1013",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%200%20100%20100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23ff6d00%22/><text x=%2250%%22 y=%2255%%22 font-size=%2260%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>⏱️</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%200%20100%20100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23ff6d00%22/><text x=%2250%%22 y=%2255%%22 font-size=%2260%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>⏱️</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
